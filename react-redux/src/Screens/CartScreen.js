@@ -4,6 +4,7 @@ import { Button, Stack } from '@mui/material';
 import CAPTIONS from '../Constants/captions';
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../store/cartSlice";
+import ERRORS from "../Constants/errors";
 
 
 const CATEGORIES = [ 'abc', 'def', 'ghi']
@@ -22,7 +23,7 @@ const CartScreen = () => {
 
     const [productAmount, setProductAmount] = useState(0)
     const handleProductAmountSet = useCallback((event) => {
-        setProductAmount(event.target.value)
+        setProductAmount(parseInt(event.target.value))
     }, [setProductAmount])
 
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const CartScreen = () => {
             <Autocomplete
                 options={CATEGORIES} 
                 sx={{ width: 300 }} 
-                renderInput={(params) => <TextField {...params} label={CAPTIONS.CATEGORIES}/>}
+                renderInput={(params) => <TextField {...params} error={!category} helperText= {!category ? ERRORS.REQUIRED: null} label={CAPTIONS.CATEGORIES}/>}
                 inputValue={category}
                 onInputChange={handleCategorySelect}
             />
@@ -49,14 +50,19 @@ const CartScreen = () => {
                 variant='outlined'
                 sx={{ width: 300 }}
                 onChange={handleProductNameSet}
+                error={!productName}
+                helperText= {!productName ? ERRORS.REQUIRED: null}
             />
             <TextField 
                 label={CAPTIONS.PRODUCT_AMOUNT} 
                 variant='outlined' 
                 sx={{ width: 300 }}
                 onChange={handleProductAmountSet}
+                error={!productAmount}
+                helperText= {!productAmount ? ERRORS.REQUIRED: null}
+                type="number"
             />
-            <Button variant="contained" onClick={handleProductSave}>{CAPTIONS.SAVE}</Button>
+            <Button variant="contained" onClick={handleProductSave} disabled={!category || !productName || !productAmount}>{CAPTIONS.SAVE}</Button>
         </Stack>
     )
 }
