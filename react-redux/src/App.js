@@ -1,29 +1,19 @@
 import './App.css';
 import { useDispatch, useSelector} from 'react-redux';
 import { action } from './store';
+import CategoriesComboBox from './components/CategoriesComboBox'
+import Header from './components/header';
+import { Stack } from '@mui/material';
+import ItemTextField from './components/ItemTextField';
 function App() {
-  const counter = useSelector((state) => state.counter);
-  const dispach = useDispatch();
-  const increment = () => {
-    dispach(action.increment());
-  }
-  
-  const decrement = () => {
-    dispach(action.decrement());
-
-  }
-
-  const byVal = () => {
-    dispach(action.addBy(10));
-  }
   return (
     <div>
-     <h1>Counter app</h1>
-      <h2>{counter}</h2>
-      <button onClick={increment}>increment</button>
-      <button onClick={decrement}>decrement</button>
-      <button onClick={byVal}>by val</button>
-    </div>
+      <Header/>
+      <Stack spacing={2} sx={{ padding: 2}} direction='row'>
+      <CategoriesComboBox/>
+      <ItemTextField/>
+      </Stack>
+     </div>
   );
 }
 
