@@ -1,4 +1,5 @@
 import { configureStore, createSlice} from '@reduxjs/toolkit'
+import cartSlice from './cartSlice';
 
 const counterSlice = createSlice({
     name: 'counter',
@@ -18,7 +19,9 @@ const counterSlice = createSlice({
 
 export const action = counterSlice.actions
 const store = configureStore({
-    reducer: counterSlice.reducer
+    reducer: {
+        cart: cartSlice.reducer
+    }
 });
 
 export default store;
