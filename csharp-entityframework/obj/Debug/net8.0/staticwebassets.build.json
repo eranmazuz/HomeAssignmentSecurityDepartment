@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "pAXV2XqssIMNKKxxqI8NR161DkHO8deXfWszX5/WHKY=",
+  "Source": "csharp-entityframework",
+  "BasePath": "_content/csharp-entityframework",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
