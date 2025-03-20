@@ -1,8 +1,8 @@
-import { configureStore, createSlice} from '@reduxjs/toolkit'
+import { createSlice} from '@reduxjs/toolkit'
 
 const cartSlice = createSlice({
     name: 'cart',
-    initialState: { items: {}},
+    initialState: { items: {}, categories: []},
     reducers: {
         addItem(state, action) {
             const newProduct = action.payload
@@ -16,6 +16,9 @@ const cartSlice = createSlice({
             }
             state.items[newProduct.category][newProduct.name] += newProduct.amount
         },
+        setCategories(state, action) {
+            state.categories = action.payload
+        }
     }
 });
 
